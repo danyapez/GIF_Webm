@@ -1,55 +1,38 @@
 <!doctype html>
-<html lang="ru">
-<head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#000000">
-<title>GIF TO WEBM v20</title>
-<style>
+<html lang="ru"><head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#000000">
+<title>GIF TO WEBM v23</title><style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Press+Start+2P&display=swap');
 :root{--bg:#000;--ink:#fff;--muted:#9a9a9a;--bad:#ff6b5f;--ok:#7dff80;--pixel:"Press Start 2P",monospace;--sans:"Inter",Arial,sans-serif;--pad:clamp(16px,3vw,48px)}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;min-height:100%;background:#000;color:#fff;font-family:var(--sans)}
-button,input,a{font:inherit}#input{display:none!important}
-main{width:100%;padding:var(--pad);display:flex;flex-direction:column;gap:24px}
-.drop{width:100%;min-height:62vh;border:2px dashed #fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px;cursor:pointer;background:#000;transition:.15s}
-.drop:hover,.drop.drag{background:#fff;color:#000}
-.drop strong{font-family:var(--pixel);font-size:clamp(30px,5vw,68px);font-weight:400;line-height:1.2;letter-spacing:-.04em;display:flex;align-items:center;justify-content:center;gap:.34em;white-space:nowrap}
-.list{display:none;border:1px solid #fff;background:#000}
-.item{display:grid;grid-template-columns:86px minmax(0,1fr) 46px;gap:18px;align-items:center;padding:16px;border-top:1px solid #fff}
-.item:first-child{border-top:0}
-.preview{width:86px;height:86px;object-fit:contain;border:1px solid #fff;background-color:#111;background-image:linear-gradient(45deg,#242424 25%,transparent 25%),linear-gradient(-45deg,#242424 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#242424 75%),linear-gradient(-45deg,transparent 75%,#242424 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
-.meta b,.meta small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta b{font-size:18px}.meta small{font-size:13px;color:var(--muted);margin-top:7px}
-.remove{border:1px solid #fff;background:#000;color:#fff;width:46px;height:46px;cursor:pointer;font-size:28px;align-self:start;transform:translateY(-8px);display:grid;place-items:center;line-height:1;padding:0}
-.remove:hover{background:#fff;color:#000}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;background:#000;color:#fff;font-family:var(--sans)}button,input,a{font:inherit}#input{display:none!important}
+main{width:100%;padding:var(--pad);display:flex;flex-direction:column;gap:24px}.drop{width:100%;min-height:62vh;border:2px dashed #fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px;cursor:pointer;background:#000;transition:.15s}.drop:hover,.drop.drag{background:#fff;color:#000}.drop strong{font-family:var(--pixel);font-size:clamp(30px,5vw,68px);font-weight:400;line-height:1.2;letter-spacing:-.04em;display:flex;align-items:center;justify-content:center;gap:.34em;white-space:nowrap}
+.list{display:none;border:1px solid #fff;background:#000}.item{display:grid;grid-template-columns:86px minmax(0,1fr) 46px;gap:18px;align-items:center;padding:16px;border-top:1px solid #fff}.item:first-child{border-top:0}.preview{width:86px;height:86px;object-fit:contain;border:1px solid #fff;background-color:#111;background-image:linear-gradient(45deg,#242424 25%,transparent 25%),linear-gradient(-45deg,#242424 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#242424 75%),linear-gradient(-45deg,transparent 75%,#242424 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}.meta b,.meta small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta b{font-size:18px}.meta small{font-size:13px;color:var(--muted);margin-top:7px}.remove{border:1px solid #fff;background:#000;color:#fff;width:46px;height:46px;cursor:pointer;font-size:28px;align-self:start;transform:translateY(-8px);display:grid;place-items:center;line-height:1;padding:0}.remove:hover{background:#fff;color:#000}
 .facts{display:grid;grid-template-columns:1fr 1fr;border:1px solid #fff}.facts div{min-height:124px;padding:22px;border-right:1px solid #fff;border-bottom:1px solid #fff;font-size:14px;color:#d8d8d8}.facts div:nth-child(2n){border-right:0}.facts div:nth-last-child(-n+2){border-bottom:0}.facts b{display:block;font-family:var(--pixel);font-size:clamp(17px,2vw,24px);font-weight:400;color:#fff;margin-bottom:14px;letter-spacing:-.03em}
-.progress{display:none;border:1px solid #fff;padding:22px}.progressTop{display:flex;justify-content:space-between;gap:20px;font-family:var(--pixel);font-size:10px;line-height:1.5;margin-bottom:16px}.track{height:12px;background:#222}.bar{height:100%;width:0;background:#fff;transition:width .15s}.log{font-size:12px;color:var(--muted);margin-top:14px;min-height:18px;word-break:break-word;white-space:pre-wrap}
-.results{display:none;border:1px solid #fff}.result{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;padding:18px;border-top:1px solid #fff}.result:first-child{border-top:0}.resultName{min-width:0}.resultName b,.resultName small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.resultName b{font-size:15px}.resultName small{margin-top:6px;color:var(--muted);font-size:12px}.download{display:inline-flex;align-items:center;justify-content:center;border:1px solid #fff;color:#fff;background:#000;padding:14px 16px;text-decoration:none;font-family:var(--pixel);font-size:9px;white-space:nowrap}.download:hover{background:#fff;color:#000}
-.statusBad{color:var(--bad)!important}.statusOk{color:var(--ok)!important}
+.progress{display:none;border:1px solid #fff;padding:22px}.progressTop{display:flex;justify-content:space-between;gap:20px;font-family:var(--pixel);font-size:10px;line-height:1.5;margin-bottom:16px}.track{height:12px;background:#222}.bar{height:100%;width:0;background:#fff;transition:width .12s}.log{font-size:12px;color:var(--muted);margin-top:14px;min-height:18px;word-break:break-word;white-space:pre-wrap}
+.results{display:none;border:1px solid #fff}.result{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;padding:18px;border-top:1px solid #fff}.result:first-child{border-top:0}.resultName{min-width:0}.resultName b,.resultName small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.resultName b{font-size:15px}.resultName small{margin-top:6px;color:var(--muted);font-size:12px}.download{display:inline-flex;align-items:center;justify-content:center;border:1px solid #fff;color:#fff;background:#000;padding:14px 16px;text-decoration:none;font-family:var(--pixel);font-size:9px;white-space:nowrap}.download:hover{background:#fff;color:#000}.statusBad{color:var(--bad)!important}.statusOk{color:var(--ok)!important}
 @media(max-width:700px){main{padding:16px;gap:18px}.drop{min-height:62vh;padding:20px}.drop strong{font-size:clamp(27px,8vw,44px);gap:.3em}.facts div{min-height:116px;padding:18px 16px}.item{grid-template-columns:64px minmax(0,1fr) 42px;gap:12px}.preview{width:64px;height:64px}.remove{width:42px;height:42px;transform:translateY(-10px)}.result{grid-template-columns:1fr}.download{width:100%;min-height:52px}}
-</style>
-</head>
-<body>
-<main>
+</style></head><body><main>
 <label class="drop" id="drop"><input id="input" type="file" accept="image/gif,.gif" multiple><strong><span>GIF</span><span>TO</span><span>WEBM</span></strong></label>
 <div class="list" id="list"></div>
 <div class="facts"><div><b>512 px</b>стикер</div><div><b>100×100</b>эмодзи</div><div><b>VP9</b>WebM</div><div><b>≤256 КБ</b>автосжатие</div></div>
 <div class="progress" id="progress"><div class="progressTop"><span id="status">Подготовка</span><span id="percent">0%</span></div><div class="track"><div class="bar" id="bar"></div></div><div class="log" id="log"></div></div>
-<div class="results" id="results"></div>
-</main>
-<script>
+<div class="results" id="results"></div></main>
+<script>var GifuctBundle=(()=>{var Q=Object.create;var R=Object.defineProperty;var V=Object.getOwnPropertyDescriptor;var W=Object.getOwnPropertyNames;var Y=Object.getPrototypeOf,$=Object.prototype.hasOwnProperty;var _=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports);var ee=(n,e,r,t)=>{if(e&&typeof e=="object"||typeof e=="function")for(let a of W(e))!$.call(n,a)&&a!==r&&R(n,a,{get:()=>e[a],enumerable:!(t=V(e,a))||t.enumerable});return n};var re=(n,e,r)=>(r=n!=null?Q(Y(n)):{},ee(e||!n||!n.__esModule?R(r,"default",{value:n,enumerable:!0}):r,n));var D=_(y=>{"use strict";Object.defineProperty(y,"__esModule",{value:!0});y.loop=y.conditional=y.parse=void 0;var te=function n(e,r){var t=arguments.length>2&&arguments[2]!==void 0?arguments[2]:{},a=arguments.length>3&&arguments[3]!==void 0?arguments[3]:t;if(Array.isArray(r))r.forEach(function(s){return n(e,s,t,a)});else if(typeof r=="function")r(e,t,a,n);else{var i=Object.keys(r)[0];Array.isArray(r[i])?(a[i]={},n(e,r[i],t,a[i])):a[i]=r[i](e,t,a,n)}return t};y.parse=te;var ne=function(e,r){return function(t,a,i,s){r(t,a,i)&&s(t,e,a,i)}};y.conditional=ne;var ae=function(e,r){return function(t,a,i,s){for(var d=[],u=t.pos;r(t,a,i);){var l={};if(s(t,e,a,l),t.pos===u)break;u=t.pos,d.push(l)}return d}};y.loop=ae});var E=_(f=>{"use strict";Object.defineProperty(f,"__esModule",{value:!0});f.readBits=f.readArray=f.readUnsigned=f.readString=f.peekBytes=f.readBytes=f.peekByte=f.readByte=f.buildStream=void 0;var ie=function(e){return{data:e,pos:0}};f.buildStream=ie;var K=function(){return function(e){return e.data[e.pos++]}};f.readByte=K;var oe=function(){var e=arguments.length>0&&arguments[0]!==void 0?arguments[0]:0;return function(r){return r.data[r.pos+e]}};f.peekByte=oe;var C=function(e){return function(r){return r.data.subarray(r.pos,r.pos+=e)}};f.readBytes=C;var de=function(e){return function(r){return r.data.subarray(r.pos,r.pos+e)}};f.peekBytes=de;var se=function(e){return function(r){return Array.from(C(e)(r)).map(function(t){return String.fromCharCode(t)}).join("")}};f.readString=se;var ue=function(e){return function(r){var t=C(2)(r);return e?(t[1]<<8)+t[0]:(t[0]<<8)+t[1]}};f.readUnsigned=ue;var ce=function(e,r){return function(t,a,i){for(var s=typeof r=="function"?r(t,a,i):r,d=C(e),u=new Array(s),l=0;l<s;l++)u[l]=d(t);return u}};f.readArray=ce;var le=function(e,r,t){for(var a=0,i=0;i<t;i++)a+=e[r+i]&&Math.pow(2,t-i-1);return a},fe=function(e){return function(r){for(var t=K()(r),a=new Array(8),i=0;i<8;i++)a[7-i]=!!(t&1<<i);return Object.keys(e).reduce(function(s,d){var u=e[d];return u.length?s[d]=le(a,u.index,u.length):s[d]=a[u.index],s},{})}};f.readBits=fe});var X=_(I=>{"use strict";Object.defineProperty(I,"__esModule",{value:!0});I.default=void 0;var x=D(),o=E(),F={blocks:function(e){for(var r=0,t=[],a=e.data.length,i=0,s=(0,o.readByte)()(e);s!==r&&s;s=(0,o.readByte)()(e)){if(e.pos+s>=a){var d=a-e.pos;t.push((0,o.readBytes)(d)(e)),i+=d;break}t.push((0,o.readBytes)(s)(e)),i+=s}for(var u=new Uint8Array(i),l=0,p=0;p<t.length;p++)u.set(t[p],l),l+=t[p].length;return u}},pe=(0,x.conditional)({gce:[{codes:(0,o.readBytes)(2)},{byteSize:(0,o.readByte)()},{extras:(0,o.readBits)({future:{index:0,length:3},disposal:{index:3,length:3},userInput:{index:6},transparentColorGiven:{index:7}})},{delay:(0,o.readUnsigned)(!0)},{transparentColorIndex:(0,o.readByte)()},{terminator:(0,o.readByte)()}]},function(n){var e=(0,o.peekBytes)(2)(n);return e[0]===33&&e[1]===249}),ve=(0,x.conditional)({image:[{code:(0,o.readByte)()},{descriptor:[{left:(0,o.readUnsigned)(!0)},{top:(0,o.readUnsigned)(!0)},{width:(0,o.readUnsigned)(!0)},{height:(0,o.readUnsigned)(!0)},{lct:(0,o.readBits)({exists:{index:0},interlaced:{index:1},sort:{index:2},future:{index:3,length:2},size:{index:5,length:3}})}]},(0,x.conditional)({lct:(0,o.readArray)(3,function(n,e,r){return Math.pow(2,r.descriptor.lct.size+1)})},function(n,e,r){return r.descriptor.lct.exists}),{data:[{minCodeSize:(0,o.readByte)()},F]}]},function(n){return(0,o.peekByte)()(n)===44}),ge=(0,x.conditional)({text:[{codes:(0,o.readBytes)(2)},{blockSize:(0,o.readByte)()},{preData:function(e,r,t){return(0,o.readBytes)(t.text.blockSize)(e)}},F]},function(n){var e=(0,o.peekBytes)(2)(n);return e[0]===33&&e[1]===1}),ye=(0,x.conditional)({application:[{codes:(0,o.readBytes)(2)},{blockSize:(0,o.readByte)()},{id:function(e,r,t){return(0,o.readString)(t.blockSize)(e)}},F]},function(n){var e=(0,o.peekBytes)(2)(n);return e[0]===33&&e[1]===255}),xe=(0,x.conditional)({comment:[{codes:(0,o.readBytes)(2)},F]},function(n){var e=(0,o.peekBytes)(2)(n);return e[0]===33&&e[1]===254}),Be=[{header:[{signature:(0,o.readString)(3)},{version:(0,o.readString)(3)}]},{lsd:[{width:(0,o.readUnsigned)(!0)},{height:(0,o.readUnsigned)(!0)},{gct:(0,o.readBits)({exists:{index:0},resolution:{index:1,length:3},sort:{index:4},size:{index:5,length:3}})},{backgroundColorIndex:(0,o.readByte)()},{pixelAspectRatio:(0,o.readByte)()}]},(0,x.conditional)({gct:(0,o.readArray)(3,function(n,e){return Math.pow(2,e.lsd.gct.size+1)})},function(n,e){return e.lsd.gct.exists}),{frames:(0,x.loop)([pe,ye,xe,ve,ge],function(n){var e=(0,o.peekByte)()(n);return e===33||e===44})}],he=Be;I.default=he});var Z=_(M=>{"use strict";Object.defineProperty(M,"__esModule",{value:!0});M.deinterlace=void 0;var me=function(e,r){for(var t=new Array(e.length),a=e.length/r,i=function(A,v){var c=e.slice(v*r,(v+1)*r);t.splice.apply(t,[A*r,r].concat(c))},s=[0,4,2,1],d=[8,8,4,2],u=0,l=0;l<4;l++)for(var p=s[l];p<a;p+=d[l])i(p,u),u++;return t};M.deinterlace=me});var H=_(q=>{"use strict";Object.defineProperty(q,"__esModule",{value:!0});q.lzw=void 0;var be=function(e,r,t){var a=4096,i=-1,s=t,d,u,l,p,G,A,v,b,c,h,k,z,m,g,U,P,T=new Array(t),O=new Array(a),S=new Array(a),w=new Array(a+1);for(z=e,u=1<<z,G=u+1,d=u+2,v=i,p=z+1,l=(1<<p)-1,c=0;c<u;c++)O[c]=0,S[c]=c;var k,b,N,m,g,P,U;for(k=b=N=m=g=P=U=0,h=0;h<s;){if(g===0){if(b<p){k+=r[U]<<b,b+=8,U++;continue}if(c=k&l,k>>=p,b-=p,c>d||c==G)break;if(c==u){p=z+1,l=(1<<p)-1,d=u+2,v=i;continue}if(v==i){w[g++]=S[c],v=c,m=c;continue}for(A=c,c==d&&(w[g++]=m,c=v);c>u;)w[g++]=S[c],c=O[c];m=S[c]&255,w[g++]=m,d<a&&(O[d]=v,S[d]=m,d++,(d&l)===0&&d<a&&(p++,l+=d)),v=A}g--,T[P++]=w[g],h++}for(h=P;h<s;h++)T[h]=0;return T};q.lzw=be});var L=_(B=>{"use strict";Object.defineProperty(B,"__esModule",{value:!0});B.decompressFrames=B.decompressFrame=B.parseGIF=void 0;var _e=ze(X()),Se=D(),we=E(),ke=Z(),Ae=H();function ze(n){return n&&n.__esModule?n:{default:n}}var Pe=function(e){var r=new Uint8Array(e);return(0,Se.parse)((0,we.buildStream)(r),_e.default)};B.parseGIF=Pe;var Ue=function(e){for(var r=e.pixels.length,t=new Uint8ClampedArray(r*4),a=0;a<r;a++){var i=a*4,s=e.pixels[a],d=e.colorTable[s]||[0,0,0];t[i]=d[0],t[i+1]=d[1],t[i+2]=d[2],t[i+3]=s!==e.transparentIndex?255:0}return t},J=function(e,r,t){if(!e.image){console.warn("gif frame does not have associated image.");return}var a=e.image,i=a.descriptor.width*a.descriptor.height,s=(0,Ae.lzw)(a.data.minCodeSize,a.data.blocks,i);a.descriptor.lct.interlaced&&(s=(0,ke.deinterlace)(s,a.descriptor.width));var d={pixels:s,dims:{top:e.image.descriptor.top,left:e.image.descriptor.left,width:e.image.descriptor.width,height:e.image.descriptor.height}};return a.descriptor.lct&&a.descriptor.lct.exists?d.colorTable=a.lct:d.colorTable=r,e.gce&&(d.delay=(e.gce.delay||10)*10,d.disposalType=e.gce.extras.disposal,e.gce.extras.transparentColorGiven&&(d.transparentIndex=e.gce.transparentColorIndex)),t&&(d.patch=Ue(d)),d};B.decompressFrame=J;var Ce=function(e,r){return e.frames.filter(function(t){return t.image}).map(function(t){return J(t,e.gct,r)})};B.decompressFrames=Ce});var j=re(L());window.Gifuct={parseGIF:j.parseGIF,decompressFrames:j.decompressFrames};})();
+</script><script>
 'use strict';
-const CORE_JS='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/umd/ffmpeg-core.js';
-const CORE_WASM='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/umd/ffmpeg-core.wasm';
-const MAX=256*1024;
+const LIBAV_BASE='https://cdn.jsdelivr.net/npm/@libav.js/variant-webm-vp9-cli@6.9.8/dist/';
+const LIBAV_FRONT='libav-6.9.8.1-webm-vp9-cli.js';
+const LIBAV_FACTORY='libav-6.9.8.1-webm-vp9-cli.asm.js';
+const LIBAV_WASM='';
+const MAX_BYTES=256*1024;
+const MAX_DURATION_MS=3000;
 const $=s=>document.querySelector(s),input=$('#input'),drop=$('#drop'),list=$('#list'),progressBox=$('#progress'),bar=$('#bar'),percent=$('#percent'),status=$('#status'),log=$('#log'),results=$('#results');
-let files=[],busy=false,objectUrls=[],previewUrls=[],assetsPromise=null;
+let files=[],busy=false,objectUrls=[],previewUrls=[],assetsPromise=null,assetUrls=[];
 const size=n=>n<1024?`${n} Б`:`${(n/1024).toFixed(n<10240?1:0)} КБ`;
 const clean=n=>(n.replace(/\.[^.]+$/,'').replace(/[^\p{L}\p{N}._-]+/gu,'_')||'file');
-function setProgress(n,t){n=Math.max(0,Math.min(100,Math.round(n)));bar.style.width=n+'%';percent.textContent=n+'%';if(t)status.textContent=t}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function setProgress(n,t,detail=''){n=Math.max(0,Math.min(100,Math.round(n)));bar.style.width=n+'%';percent.textContent=n+'%';if(t)status.textContent=t;if(detail){log.textContent=detail;log.className='log'}}
 function setError(text){status.textContent='Ошибка';percent.textContent='';log.textContent=text;log.className='log statusBad'}
 function revokeResults(){objectUrls.forEach(URL.revokeObjectURL);objectUrls=[];results.innerHTML='';results.style.display='none'}
 function clearPreviews(){previewUrls.forEach(URL.revokeObjectURL);previewUrls=[]}
@@ -60,112 +43,171 @@ input.onchange=async()=>{await add(input.files);input.value=''};
 ['dragleave','drop'].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.remove('drag')}));
 drop.addEventListener('drop',e=>add(e.dataTransfer.files));
 
-function timeout(p,ms,msg){return Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej(new Error(msg)),ms))])}
-async function fetchBlobURL(url,type,onProgress){
-  const res=await fetch(url,{mode:'cors',cache:'force-cache'});
-  if(!res.ok)throw new Error(`Не удалось загрузить FFmpeg: HTTP ${res.status}`);
+function normalizeDelay(ms){ms=Number(ms)||0;return ms<20?100:ms}
+function readGifInfo(buffer){
+  const parsed=Gifuct.parseGIF(buffer);
+  const delays=[];
+  for(const frame of parsed.frames){if(frame.image)delays.push(normalizeDelay(frame.gce&&frame.gce.delay!=null?frame.gce.delay*10:100))}
+  const durationMs=Math.min(MAX_DURATION_MS,Math.max(1,delays.reduce((a,b)=>a+b,0)||100));
+  const sorted=delays.slice().sort((a,b)=>a-b),median=sorted.length?sorted[Math.floor(sorted.length/2)]:50,preferredFps=Math.max(10,Math.min(30,Math.round(1000/median)));return {width:parsed.lsd.width,height:parsed.lsd.height,delays,durationMs,frameCount:delays.length||1,preferredFps};
+}
+function even(v,max=512){v=Math.max(2,Math.min(max,Math.round(v)));if(v%2)v+=v===max?-1:1;return v}
+function targetGeometry(kind,w,h){
+  if(kind==='emoji')return {width:100,height:100,dx:0,dy:0,dw:100,dh:100,padded:true};
+  if(w>=h){const th=even(512*h/w);return {width:512,height:th,dx:0,dy:0,dw:512,dh:th,padded:false}}
+  const tw=even(512*w/h);return {width:tw,height:512,dx:0,dy:0,dw:tw,dh:512,padded:false};
+}
+function drawGeometry(kind,srcW,srcH){
+  const g=targetGeometry(kind,srcW,srcH);
+  if(kind==='emoji'){
+    const scale=Math.min(100/srcW,100/srcH),dw=Math.max(1,Math.round(srcW*scale)),dh=Math.max(1,Math.round(srcH*scale));
+    g.dx=Math.floor((100-dw)/2);g.dy=Math.floor((100-dh)/2);g.dw=dw;g.dh=dh;
+  }
+  return g;
+}
+async function fetchScriptAsBlob(url,onProgress){
+  const res=await fetch(url,{mode:'cors',cache:'force-cache'});if(!res.ok)throw new Error(`Не удалось загрузить кодировщик: HTTP ${res.status}`);
   const total=Number(res.headers.get('content-length'))||0;
-  if(!res.body){const blob=await res.blob();return URL.createObjectURL(new Blob([blob],{type}))}
-  const reader=res.body.getReader(),chunks=[];let loaded=0;
-  while(true){const {done,value}=await reader.read();if(done)break;chunks.push(value);loaded+=value.byteLength;if(total&&onProgress)onProgress(loaded/total)}
-  return URL.createObjectURL(new Blob(chunks,{type}));
+  if(!res.body){const blob=await res.blob();return URL.createObjectURL(new Blob([blob],{type:'text/javascript'}))}
+  const reader=res.body.getReader(),parts=[];let loaded=0;
+  while(true){const {done,value}=await reader.read();if(done)break;parts.push(value);loaded+=value.byteLength;if(total)onProgress(loaded/total)}
+  return URL.createObjectURL(new Blob(parts,{type:'text/javascript'}));
 }
 async function getAssets(){
   if(assetsPromise)return assetsPromise;
   assetsPromise=(async()=>{
-    setProgress(2,'Загрузка конвертера…');
-    const coreURL=await fetchBlobURL(CORE_JS,'text/javascript',r=>setProgress(2+r*3,'Загрузка конвертера…'));
-    const wasmURL=await fetchBlobURL(CORE_WASM,'application/wasm',r=>setProgress(5+r*20,'Загрузка конвертера…'));
-    return {coreURL,wasmURL};
-  })();
+    setProgress(2,'Загрузка кодировщика…','Подготавливаю VP9. Это происходит один раз.');
+    const frontURL=await fetchScriptAsBlob(LIBAV_BASE+LIBAV_FRONT,r=>setProgress(2+r*2,'Загрузка кодировщика…','Подготавливаю VP9.'));
+    assetUrls.push(frontURL);
+    const factoryURL=await fetchScriptAsBlob(LIBAV_BASE+LIBAV_FACTORY,r=>setProgress(4+r*8,'Загрузка кодировщика…',`Загружено ${Math.round(r*100)}%`));
+    assetUrls.push(factoryURL);return {frontURL,factoryURL};
+  })().catch(e=>{assetsPromise=null;throw e});
   return assetsPromise;
 }
+window.addEventListener('beforeunload',()=>assetUrls.forEach(URL.revokeObjectURL));
 
-class OneShotFFmpeg{
-  constructor(coreURL,wasmURL){this.coreURL=coreURL;this.wasmURL=wasmURL;this.worker=null;this.seq=0;this.pending=new Map();this.workerURL='';this.lastLog=''}
-  async load(){
-    const source=`
-      let ffmpeg=null;
-      const reply=(id,ok,data,error,transfer)=>self.postMessage({id,ok,data,error},transfer||[]);
-      self.onmessage=async(e)=>{const {id,type,data}=e.data;try{
-        if(type==='load'){
-          importScripts(data.coreURL);
-          if(typeof self.createFFmpegCore!=='function')throw new Error('createFFmpegCore не найден');
-          ffmpeg=await self.createFFmpegCore({mainScriptUrlOrBlob:data.coreURL+'#'+btoa(JSON.stringify({wasmURL:data.wasmURL,workerURL:''}))});
-          ffmpeg.setLogger(d=>self.postMessage({event:'log',data:d}));
-          reply(id,true,true);return;
-        }
-        if(!ffmpeg)throw new Error('FFmpeg не загружен');
-        if(type==='write'){ffmpeg.FS.writeFile(data.path,new Uint8Array(data.buffer));reply(id,true,true);return;}
-        if(type==='exec'){ffmpeg.setTimeout(data.timeout||-1);ffmpeg.exec(...data.args);const ret=ffmpeg.ret;ffmpeg.reset();reply(id,true,ret);return;}
-        if(type==='read'){const out=ffmpeg.FS.readFile(data.path);const copy=new Uint8Array(out);reply(id,true,copy.buffer,null,[copy.buffer]);return;}
-        throw new Error('Неизвестная команда');
-      }catch(err){reply(id,false,null,err&&err.message?err.message:String(err));}};
-    `;
-    this.workerURL=URL.createObjectURL(new Blob([source],{type:'text/javascript'}));
-    this.worker=new Worker(this.workerURL);
-    this.worker.onmessage=e=>{const m=e.data;if(m.event==='log'){const text=m.data&&m.data.message?m.data.message:'';if(text)this.lastLog=text;return}const p=this.pending.get(m.id);if(!p)return;this.pending.delete(m.id);m.ok?p.resolve(m.data):p.reject(new Error(m.error||'Ошибка FFmpeg'))};
-    this.worker.onerror=e=>{const err=new Error(e.message||this.lastLog||'Ошибка Worker');for(const p of this.pending.values())p.reject(err);this.pending.clear()};
-    await timeout(this.call('load',{coreURL:this.coreURL,wasmURL:this.wasmURL}),180000,'Конвертер не загрузился за 3 минуты.');
+function buildWorker(assets){
+  const source=`
+  'use strict';
+  const FRONT_URL=${JSON.stringify(assets.frontURL)},FACTORY_URL=${JSON.stringify(assets.factoryURL)};
+  self.LibAV={};
+  importScripts(FRONT_URL);
+  let libav=null,c=0,frame=0,pkt=0,oc=0,pb=0,src=0,sink=0,width=0,height=0,fps=30,count=0;
+  const send=(id,ok,data,error,transfer=[])=>self.postMessage({id,ok,data,error},transfer);
+  async function writePackets(packets){for(const p of packets)p.stream_index=0;if(packets.length)await libav.ff_write_multi(oc,pkt,packets,true)}
+  self.onmessage=async e=>{const {id,cmd,data}=e.data;try{
+    if(cmd==='init'){
+      width=data.width;height=data.height;fps=data.fps;
+      libav=await self.LibAV.LibAV({noworker:true,nowasm:true,nothreads:true,noes6:true,toImport:FACTORY_URL});
+      [,c,frame,pkt]=await libav.ff_init_encoder('libvpx-vp9',{ctx:{width,height,pix_fmt:libav.AV_PIX_FMT_YUVA420P,bit_rate:data.bitrate*1000,framerate_num:fps,framerate_den:1,gop_size:Math.max(1,Math.round(fps*3))},time_base:[1,fps],options:{deadline:'realtime','cpu-used':'8','lag-in-frames':'0','auto-alt-ref':'0','row-mt':'0'}});
+      [oc,,pb]=await libav.ff_init_muxer({format_name:'webm',filename:'out.webm',open:true},[[c,1,fps]]);
+      const hr=await libav.avformat_write_header(oc,0);if(hr<0)throw new Error('Не удалось создать WebM: '+hr);
+      [,src,sink]=await libav.ff_init_filter_graph('format=yuva420p',{type:libav.AVMEDIA_TYPE_VIDEO,time_base:[1,fps],frame_rate:fps,pix_fmt:libav.AV_PIX_FMT_RGBA,width,height},{type:libav.AVMEDIA_TYPE_VIDEO,time_base:[1,fps],frame_rate:fps,pix_fmt:libav.AV_PIX_FMT_YUVA420P,width,height});
+      send(id,true,{ready:true});return;
+    }
+    if(cmd==='frame'){
+      const rgba=new Uint8Array(data.buffer);
+      const fr={data:rgba,format:libav.AV_PIX_FMT_RGBA,layout:[{offset:0,stride:width*4}],width,height,pts:count++,time_base_num:1,time_base_den:fps};
+      const filtered=await libav.ff_filter_multi(src,sink,frame,[fr],{copyoutFrame:'default'});
+      const packets=await libav.ff_encode_multi(c,frame,pkt,filtered,false);await writePackets(packets);
+      send(id,true,{index:count});return;
+    }
+    if(cmd==='finish'){
+      let filtered=await libav.ff_filter_multi(src,sink,frame,[],{fin:true,copyoutFrame:'default'});
+      let packets=await libav.ff_encode_multi(c,frame,pkt,filtered,false);await writePackets(packets);
+      packets=await libav.ff_encode_multi(c,frame,pkt,[],true);await writePackets(packets);
+      const tr=await libav.av_write_trailer(oc);if(tr<0)throw new Error('Не удалось завершить WebM: '+tr);
+      const out=await libav.readFile('out.webm'),copy=new Uint8Array(out.length);copy.set(out);
+      send(id,true,{buffer:copy.buffer,frames:count},null,[copy.buffer]);return;
+    }
+    throw new Error('Неизвестная команда');
+  }catch(err){send(id,false,null,err&&err.message?err.message:String(err));}}
+  `;
+  const url=URL.createObjectURL(new Blob([source],{type:'text/javascript'}));
+  const worker=new Worker(url);return {worker,url};
+}
+class EncoderSession{
+  constructor(assets){const x=buildWorker(assets);this.worker=x.worker;this.url=x.url;this.seq=0;this.pending=new Map();this.worker.onmessage=e=>{const m=e.data,p=this.pending.get(m.id);if(!p)return;this.pending.delete(m.id);m.ok?p.resolve(m.data):p.reject(new Error(m.error||'Ошибка кодировщика'))};this.worker.onerror=e=>{const err=new Error(e.message||'Ошибка кодировщика');for(const p of this.pending.values())p.reject(err);this.pending.clear()}}
+  call(cmd,data={},transfer=[]){return new Promise((resolve,reject)=>{const id=++this.seq;this.pending.set(id,{resolve,reject});this.worker.postMessage({id,cmd,data},transfer)})}
+  init(cfg){return this.call('init',cfg)}
+  frame(buffer){return this.call('frame',{buffer},[buffer])}
+  finish(){return this.call('finish')}
+  close(){this.worker.terminate();URL.revokeObjectURL(this.url);this.pending.clear()}
+}
+function makeCanvas(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return c}
+async function sendCanvasFrame(session,outCtx,w,h){const image=outCtx.getImageData(0,0,w,h),buffer=image.data.buffer;await session.frame(buffer)}
+async function streamWithImageDecoder(buffer,info,kind,fps,session,onProgress){
+  const decoder=new ImageDecoder({data:buffer,type:'image/gif',preferAnimation:true});
+  await decoder.tracks.ready;
+  const track=decoder.tracks.selectedTrack,count=track&&track.frameCount?track.frameCount:info.frameCount;
+  const g=drawGeometry(kind,info.width,info.height),out=makeCanvas(g.width,g.height),ctx=out.getContext('2d',{alpha:true,willReadFrequently:true});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+  const interval=1e6/fps,cap=MAX_DURATION_MS*1000;let elapsed=0,next=0,sent=0;
+  for(let i=0;i<count&&elapsed<cap;i++){
+    const decoded=await decoder.decode({frameIndex:i,completeFramesOnly:true}),image=decoded.image;
+    const dur=Math.max(1000,Number(image.duration)||((info.delays[i]||100)*1000)),end=elapsed+dur;
+    ctx.clearRect(0,0,g.width,g.height);ctx.drawImage(image,g.dx,g.dy,g.dw,g.dh);
+    while(next<end&&next<cap){await sendCanvasFrame(session,ctx,g.width,g.height);sent++;next+=interval}
+    image.close();elapsed=end;onProgress(Math.min(1,(i+1)/count),sent);
   }
-  call(type,data,transfer=[]){return new Promise((resolve,reject)=>{const id=++this.seq;this.pending.set(id,{resolve,reject});this.worker.postMessage({id,type,data},transfer)})}
-  async write(path,file){const buffer=await file.arrayBuffer();await this.call('write',{path,buffer},[buffer])}
-  exec(args){return timeout(this.call('exec',{args,timeout:180000}),190000,'Конвертация заняла слишком долго.')}
-  async read(path){const buffer=await this.call('read',{path});return new Uint8Array(buffer)}
-  close(){if(this.worker)this.worker.terminate();if(this.workerURL)URL.revokeObjectURL(this.workerURL);this.worker=null;this.pending.clear()}
+  decoder.close();return sent;
 }
-
-function vf(kind,fps){
-  if(kind==='sticker')return `fps=${fps},scale=512:512:force_original_aspect_ratio=decrease:force_divisible_by=2:flags=bilinear,format=yuva420p`;
-  return `fps=${fps},scale=100:100:force_original_aspect_ratio=decrease:force_divisible_by=2:flags=bilinear,pad=100:100:(ow-iw)/2:(oh-ih)/2:color=black@0,format=yuva420p`;
+async function streamWithGifuct(buffer,info,kind,fps,session,onProgress){
+  const parsed=Gifuct.parseGIF(buffer),frames=Gifuct.decompressFrames(parsed,false),src=makeCanvas(info.width,info.height),sctx=src.getContext('2d',{alpha:true,willReadFrequently:true}),patch=makeCanvas(1,1),pctx=patch.getContext('2d',{alpha:true}),g=drawGeometry(kind,info.width,info.height),out=makeCanvas(g.width,g.height),ctx=out.getContext('2d',{alpha:true,willReadFrequently:true});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+  const interval=1000/fps;let elapsed=0,next=0,sent=0,prev=null,restore=null;
+  for(let i=0;i<frames.length&&elapsed<MAX_DURATION_MS;i++){
+    const f=frames[i];if(prev){if(prev.disposalType===2)sctx.clearRect(prev.dims.left,prev.dims.top,prev.dims.width,prev.dims.height);else if(prev.disposalType===3&&restore)sctx.putImageData(restore,0,0)}
+    let nextRestore=null;if(f.disposalType===3)nextRestore=sctx.getImageData(0,0,info.width,info.height);
+    patch.width=f.dims.width;patch.height=f.dims.height;const id=pctx.createImageData(f.dims.width,f.dims.height),d=id.data,p=f.pixels,ct=f.colorTable,ti=f.transparentIndex;
+    for(let j=0,o=0;j<p.length;j++,o+=4){const idx=p[j];if(idx===ti){d[o]=d[o+1]=d[o+2]=0;d[o+3]=0}else{const c=ct[idx]||[0,0,0];d[o]=c[0];d[o+1]=c[1];d[o+2]=c[2];d[o+3]=255}}
+    pctx.putImageData(id,0,0);sctx.drawImage(patch,f.dims.left,f.dims.top);
+    const duration=normalizeDelay(f.delay),end=elapsed+duration;ctx.clearRect(0,0,g.width,g.height);ctx.drawImage(src,g.dx,g.dy,g.dw,g.dh);
+    while(next<end&&next<MAX_DURATION_MS){await sendCanvasFrame(session,ctx,g.width,g.height);sent++;next+=interval}
+    elapsed=end;prev=f;restore=nextRestore;f.pixels=null;frames[i]=null;onProgress(Math.min(1,(i+1)/frames.length),sent);
+  }
+  return sent;
 }
-function command(src,out,kind,fps,bitrate){
-  return ['-hide_banner','-y','-filter_threads','1','-filter_complex_threads','1','-i',src,'-t','2.99','-an','-sn','-dn','-vf',vf(kind,fps),'-c:v','libvpx-vp9','-pix_fmt','yuva420p','-threads','1','-deadline','realtime','-cpu-used','8','-lag-in-frames','0','-auto-alt-ref','0','-g',String(fps*3),'-b:v',`${bitrate}k`,'-maxrate',`${bitrate}k`,'-bufsize',`${bitrate*2}k`,'-metadata:s:v:0','alpha_mode=1','-map_metadata','-1','-f','webm',out];
-}
-async function runOne(file,kind,fps,bitrate){
-  const {coreURL,wasmURL}=await getAssets();
-  const ff=new OneShotFFmpeg(coreURL,wasmURL);
-  const src='input.gif',out='output.webm';
+async function encodeAttempt(buffer,info,kind,fps,bitrate,onProgress){
+  const g=drawGeometry(kind,info.width,info.height),assets=await getAssets(),session=new EncoderSession(assets);
   try{
-    await ff.load();
-    await ff.write(src,file);
-    const ret=await ff.exec(command(src,out,kind,fps,bitrate));
-    if(ret!==0)throw new Error(ff.lastLog||`FFmpeg завершился с кодом ${ret}`);
-    return await ff.read(out);
-  }finally{ff.close()}
+    await session.init({width:g.width,height:g.height,fps,bitrate});
+    const sent=(typeof ImageDecoder==='function')?await streamWithImageDecoder(buffer,info,kind,fps,session,onProgress):await streamWithGifuct(buffer,info,kind,fps,session,onProgress);
+    if(!sent)throw new Error('В GIF не найдено кадров.');
+    const out=await session.finish();return new Uint8Array(out.buffer);
+  }finally{session.close()}
 }
-async function encode(file,kind,onTry){
-  const plans=kind==='sticker'?
-    [{fps:24,k:480},{fps:20,k:420},{fps:15,k:340}]:
-    [{fps:24,k:190},{fps:20,k:160},{fps:15,k:130}];
-  let lastError=null;
+function bitratePlan(kind,durationMs,preferredFps){
+  const sec=Math.max(.12,Math.min(3,durationMs/1000));
+  const targetK=Math.floor(((MAX_BYTES-16000)*8/sec/1000)*.42);
+  const cap=kind==='sticker'?700:220,min=kind==='sticker'?90:45,base=Math.max(min,Math.min(cap,targetK));
+  const fps=Math.max(10,Math.min(30,preferredFps||24));
+  return [{fps,k:base},{fps:Math.min(fps,20),k:Math.max(min,Math.floor(base*.64))},{fps:15,k:Math.max(35,Math.floor(base*.42))}];
+}
+async function encode(buffer,info,kind,onStage){
+  const plans=bitratePlan(kind,info.durationMs,info.preferredFps);let last=null;
   for(let i=0;i<plans.length;i++){
-    const p=plans[i];onTry(i,plans.length,p);
+    const p=plans[i];onStage(i,plans.length,p,0);
     try{
-      const data=await runOne(file,kind,p.fps,p.k);
-      if(data.byteLength<=MAX)return data;
-      lastError=new Error(`Получилось ${size(data.byteLength)}, повторяю с более сильным сжатием.`);
-    }catch(e){lastError=e}
-    await new Promise(r=>setTimeout(r,80));
+      const data=await encodeAttempt(buffer,info,kind,p.fps,p.k,(r,n)=>onStage(i,plans.length,p,r,n));
+      if(data.byteLength<=MAX_BYTES)return data;
+      last=new Error(`Получилось ${size(data.byteLength)}. Повторяю с более сильным сжатием.`);
+    }catch(e){last=e}
+    await sleep(60);
   }
-  throw lastError||new Error('Не удалось создать WebM.');
+  throw last||new Error('Не удалось создать WebM до 256 КБ.');
 }
 function addResult(name,data,label){const blob=new Blob([data],{type:'video/webm'}),url=URL.createObjectURL(blob);objectUrls.push(url);const row=document.createElement('div');row.className='result';row.innerHTML=`<div class="resultName"><b></b><small>${label} · ${size(data.byteLength)}</small></div><a class="download">Скачать</a>`;row.querySelector('b').textContent=name;const a=row.querySelector('a');a.href=url;a.download=name;results.append(row);results.style.display='block'}
 async function convertAll(){
-  if(busy||!files.length)return;busy=true;revokeResults();progressBox.style.display='block';log.textContent='';log.className='log';setProgress(1,'Загрузка конвертера…');
+  if(busy||!files.length)return;busy=true;revokeResults();progressBox.style.display='block';log.textContent='';log.className='log';setProgress(1,'Подготовка…','Первый запуск загружает кодировщик VP9.');
   try{
     await getAssets();
     for(let i=0;i<files.length;i++){
-      const f=files[i],base=clean(f.name),portion=75/files.length,start=25+i*portion;
-      const s=await encode(f,'sticker',(t,n,p)=>setProgress(start+portion*(.04+.42*t/n),`${i+1}/${files.length} · стикер ${p.fps} FPS`));
+      const f=files[i],base=clean(f.name),buffer=await f.arrayBuffer(),info=readGifInfo(buffer),portion=88/files.length,start=12+i*portion;
+      const s=await encode(buffer,info,'sticker',(attempt,total,p,r=0)=>setProgress(start+portion*(.02+.45*((attempt+r)/total)),`${i+1}/${files.length} · стикер`,`${p.fps} FPS · попытка ${attempt+1}/${total}`));
       addResult(base+'_sticker.webm',s,'стикер 512 px');
-      const e=await encode(f,'emoji',(t,n,p)=>setProgress(start+portion*(.52+.42*t/n),`${i+1}/${files.length} · эмодзи ${p.fps} FPS`));
+      const e=await encode(buffer,info,'emoji',(attempt,total,p,r=0)=>setProgress(start+portion*(.52+.45*((attempt+r)/total)),`${i+1}/${files.length} · эмодзи`,`${p.fps} FPS · попытка ${attempt+1}/${total}`));
       addResult(base+'_emoji.webm',e,'эмодзи 100×100');
     }
-    setProgress(100,'Готово');log.textContent='Файлы готовы к скачиванию.';log.className='log statusOk';
-  }catch(e){console.error(e);let m=(e&&e.message?e.message:String(e)).replace(/^RuntimeError:\s*/,'').replace(/^Error:\s*/,'');if(/memory access out of bounds/i.test(m))m='Браузеру не хватило памяти для VP9. Закрой лишние вкладки и попробуй GIF меньшего разрешения.';setError(m)}
-  finally{busy=false}
+    setProgress(100,'Готово','Файлы готовы к скачиванию.');log.className='log statusOk';
+  }catch(e){console.error(e);let m=(e&&e.message?e.message:String(e)).replace(/^RuntimeError:\s*/,'').replace(/^Error:\s*/,'');if(/failed to fetch|networkerror|importscripts/i.test(m))m='Не удалось загрузить кодировщик VP9. Проверь интернет и обнови страницу.';setError(m)}finally{busy=false}
 }
-</script>
-</body>
-</html>
+</script></body></html>

@@ -7,12 +7,12 @@
 <title>GIF TO WEBM</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Press+Start+2P&display=swap');
-:root{--bg:#000;--ink:#fff;--muted:#9a9a9a;--bad:#ff6b5f;--pixel:"Press Start 2P",monospace;--sans:"Inter",Arial,sans-serif;--pad:clamp(16px,4vw,50px)}
+:root{--bg:#000;--ink:#fff;--muted:#9a9a9a;--bad:#ff6b5f;--ok:#7dff80;--pixel:"Press Start 2P",monospace;--sans:"Inter",Arial,sans-serif;--pad:clamp(16px,3vw,48px)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;min-height:100%;background:#000;color:#fff;font-family:var(--sans)}
 button,input,a{font:inherit}#input{display:none!important}
-main{width:100%;max-width:1280px;margin:0 auto;padding:var(--pad);display:flex;flex-direction:column;gap:24px}
-.drop{min-height:62vh;border:2px dashed #fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px;cursor:pointer;background:#000;transition:.15s}
+main{width:100%;padding:var(--pad);display:flex;flex-direction:column;gap:24px}
+.drop{width:100%;min-height:62vh;border:2px dashed #fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px;cursor:pointer;background:#000;transition:.15s}
 .drop:hover,.drop.drag{background:#fff;color:#000}
 .drop strong{font-family:var(--pixel);font-size:clamp(30px,5vw,68px);font-weight:400;line-height:1.2;letter-spacing:-.04em;display:flex;align-items:center;justify-content:center;gap:.34em;white-space:nowrap}
 .list{display:none;border:1px solid #fff;background:#000}
@@ -23,9 +23,9 @@ main{width:100%;max-width:1280px;margin:0 auto;padding:var(--pad);display:flex;f
 .remove{border:1px solid #fff;background:#000;color:#fff;width:46px;height:46px;cursor:pointer;font-size:28px;align-self:start;transform:translateY(-8px);display:grid;place-items:center;line-height:1;padding:0}
 .remove:hover{background:#fff;color:#000}
 .facts{display:grid;grid-template-columns:1fr 1fr;border:1px solid #fff}.facts div{min-height:124px;padding:22px;border-right:1px solid #fff;border-bottom:1px solid #fff;font-size:14px;color:#d8d8d8}.facts div:nth-child(2n){border-right:0}.facts div:nth-last-child(-n+2){border-bottom:0}.facts b{display:block;font-family:var(--pixel);font-size:clamp(17px,2vw,24px);font-weight:400;color:#fff;margin-bottom:14px;letter-spacing:-.03em}
-.progress{display:none;border:1px solid #fff;padding:22px}.progressTop{display:flex;justify-content:space-between;gap:20px;font-family:var(--pixel);font-size:10px;line-height:1.5;margin-bottom:16px}.track{height:12px;background:#222}.bar{height:100%;width:0;background:#fff;transition:width .15s}.log{font-size:12px;color:var(--muted);margin-top:14px;min-height:18px;word-break:break-word}
+.progress{display:none;border:1px solid #fff;padding:22px}.progressTop{display:flex;justify-content:space-between;gap:20px;font-family:var(--pixel);font-size:10px;line-height:1.5;margin-bottom:16px}.track{height:12px;background:#222}.bar{height:100%;width:0;background:#fff;transition:width .15s}.log{font-size:12px;color:var(--muted);margin-top:14px;min-height:18px;word-break:break-word;white-space:pre-wrap}
 .results{display:none;border:1px solid #fff}.result{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;padding:18px;border-top:1px solid #fff}.result:first-child{border-top:0}.resultName{min-width:0}.resultName b,.resultName small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.resultName b{font-size:15px}.resultName small{margin-top:6px;color:var(--muted);font-size:12px}.download{display:inline-flex;align-items:center;justify-content:center;border:1px solid #fff;color:#fff;background:#000;padding:14px 16px;text-decoration:none;font-family:var(--pixel);font-size:9px;white-space:nowrap}.download:hover{background:#fff;color:#000}
-.statusBad{color:var(--bad)!important}
+.statusBad{color:var(--bad)!important}.statusOk{color:var(--ok)!important}
 @media(max-width:700px){main{padding:16px;gap:18px}.drop{min-height:62vh;padding:20px}.drop strong{font-size:clamp(27px,8vw,44px);gap:.3em}.facts div{min-height:116px;padding:18px 16px}.item{grid-template-columns:64px minmax(0,1fr) 42px;gap:12px}.preview{width:64px;height:64px}.remove{width:42px;height:42px;transform:translateY(-10px)}.result{grid-template-columns:1fr}.download{width:100%;min-height:52px}}
 </style>
 </head>
@@ -37,39 +37,140 @@ main{width:100%;max-width:1280px;margin:0 auto;padding:var(--pad);display:flex;f
 <div class="progress" id="progress"><div class="progressTop"><span id="status">Подготовка</span><span id="percent">0%</span></div><div class="track"><div class="bar" id="bar"></div></div><div class="log" id="log"></div></div>
 <div class="results" id="results"></div>
 </main>
-<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
 <script>
-const $=s=>document.querySelector(s),input=$('#input'),drop=$('#drop'),list=$('#list'),progress=$('#progress'),bar=$('#bar'),percent=$('#percent'),status=$('#status'),log=$('#log'),results=$('#results');
-const MAX=256*1024;let files=[],ffmpeg=null,loaded=false,busy=false,objectUrls=[],previewUrls=[];
+'use strict';
+const CORE_JS='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/umd/ffmpeg-core.js';
+const CORE_WASM='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/umd/ffmpeg-core.wasm';
+const MAX=256*1024;
+const $=s=>document.querySelector(s),input=$('#input'),drop=$('#drop'),list=$('#list'),progressBox=$('#progress'),bar=$('#bar'),percent=$('#percent'),status=$('#status'),log=$('#log'),results=$('#results');
+let files=[],engine=null,busy=false,objectUrls=[],previewUrls=[];
 const size=n=>n<1024?`${n} Б`:`${(n/1024).toFixed(n<10240?1:0)} КБ`;
 const clean=n=>(n.replace(/\.[^.]+$/,'').replace(/[^\p{L}\p{N}._-]+/gu,'_')||'file');
 function setProgress(n,t){n=Math.max(0,Math.min(100,Math.round(n)));bar.style.width=n+'%';percent.textContent=n+'%';if(t)status.textContent=t}
+function setError(text){status.textContent='Ошибка';percent.textContent='';log.textContent=text;log.className='log statusBad'}
 function revokeResults(){objectUrls.forEach(URL.revokeObjectURL);objectUrls=[];results.innerHTML='';results.style.display='none'}
 function clearPreviews(){previewUrls.forEach(URL.revokeObjectURL);previewUrls=[]}
-function render(){clearPreviews();list.innerHTML='';list.style.display=files.length?'block':'none';drop.style.minHeight=files.length?'240px':'';files.forEach((f,i)=>{const row=document.createElement('div');row.className='item';const url=URL.createObjectURL(f);previewUrls.push(url);row.innerHTML=`<img class="preview" alt="Предпросмотр GIF"><div class="meta"><b></b><small>${size(f.size)}</small></div><button class="remove" aria-label="Удалить">×</button>`;row.querySelector('.preview').src=url;row.querySelector('b').textContent=f.name;row.querySelector('.remove').onclick=e=>{e.preventDefault();if(busy)return;files.splice(i,1);render();revokeResults();};list.append(row)})}
+function render(){clearPreviews();list.innerHTML='';list.style.display=files.length?'block':'none';drop.style.minHeight=files.length?'240px':'';files.forEach((f,i)=>{const row=document.createElement('div');row.className='item';const url=URL.createObjectURL(f);previewUrls.push(url);row.innerHTML=`<img class="preview" alt="Предпросмотр GIF"><div class="meta"><b></b><small>${size(f.size)}</small></div><button class="remove" aria-label="Удалить">×</button>`;row.querySelector('.preview').src=url;row.querySelector('b').textContent=f.name;row.querySelector('.remove').onclick=e=>{e.preventDefault();if(busy)return;files.splice(i,1);render();revokeResults()};list.append(row)})}
 async function add(incoming){if(busy)return;for(const f of incoming)if(f.type==='image/gif'||f.name.toLowerCase().endsWith('.gif'))files.push(f);render();revokeResults();if(files.length)await convertAll()}
 input.onchange=async()=>{await add(input.files);input.value=''};
-['dragenter','dragover'].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.add('drag')}));['dragleave','drop'].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.remove('drag')}));drop.addEventListener('drop',e=>add(e.dataTransfer.files));
+['dragenter','dragover'].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.add('drag')}));
+['dragleave','drop'].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.remove('drag')}));
+drop.addEventListener('drop',e=>add(e.dataTransfer.files));
+
 function timeout(p,ms,msg){return Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej(new Error(msg)),ms))])}
-async function load(){
-  if(loaded)return;
-  if(!window.FFmpeg || !window.FFmpeg.createFFmpeg) throw new Error('Не загрузилась библиотека FFmpeg. Проверь интернет или блокировщик рекламы.');
-  setProgress(2,'Загрузка конвертера…');
-  const {createFFmpeg}=window.FFmpeg;
-  ffmpeg=createFFmpeg({
-    log:true,
-    corePath:'https://unpkg.com/@ffmpeg/core-st@0.11.1/dist/ffmpeg-core.js',
-    progress:({ratio})=>{if(Number.isFinite(ratio))setProgress(4+ratio*4,'Загрузка конвертера…')}
-  });
-  const oldLog=console.log;
-  await timeout(ffmpeg.load(),180000,'Конвертер не загрузился за 3 минуты. Проверь интернет и блокировщики.');
-  loaded=true;setProgress(8,'Конвертер загружен');
+async function fetchBlobURL(url,type,onProgress){
+  const res=await fetch(url,{mode:'cors',cache:'force-cache'});
+  if(!res.ok)throw new Error(`Не удалось загрузить FFmpeg: HTTP ${res.status}`);
+  const total=Number(res.headers.get('content-length'))||0;
+  if(!res.body){const blob=await res.blob();return URL.createObjectURL(new Blob([blob],{type}))}
+  const reader=res.body.getReader(),chunks=[];let loaded=0;
+  while(true){const {done,value}=await reader.read();if(done)break;chunks.push(value);loaded+=value.byteLength;if(total&&onProgress)onProgress(loaded/total)}
+  return URL.createObjectURL(new Blob(chunks,{type}));
 }
-function rm(n){try{ffmpeg.FS('unlink',n)}catch{}}
-function filter(kind){return kind==='sticker'?'scale=512:512:force_original_aspect_ratio=decrease:flags=lanczos,format=yuva420p':'scale=100:100:force_original_aspect_ratio=decrease:flags=lanczos,pad=100:100:(ow-iw)/2:(oh-ih)/2:color=black@0,format=yuva420p'}
-async function encode(src,kind,onTry){const out=kind+'.webm',steps=[34,40,46,52,58,64,70];let data=null;for(let i=0;i<steps.length;i++){onTry(i,steps.length);rm(out);await timeout(ffmpeg.run('-i',src,'-t','3','-an','-vf',filter(kind),'-r','30','-c:v','libvpx-vp9','-pix_fmt','yuva420p','-auto-alt-ref','0','-deadline','good','-cpu-used','5','-crf',String(steps[i]),'-b:v','0','-metadata:s:v:0','alpha_mode=1','-f','webm',out),180000,'Конвертация заняла слишком долго.');data=ffmpeg.FS('readFile',out);if(data.byteLength<=MAX)break}if(!data)throw new Error('WebM не создался.');const copy=new Uint8Array(data);rm(out);return copy}
+
+class FFmpegCoreWorker{
+  constructor(){this.worker=null;this.seq=0;this.pending=new Map();this.coreUrls=[];this.onLog=()=>{};this.onProgress=()=>{}}
+  async load(){
+    if(this.worker)return;
+    setProgress(2,'Загрузка FFmpeg…');
+    const coreURL=await fetchBlobURL(CORE_JS,'text/javascript',r=>setProgress(2+r*3,'Загрузка FFmpeg…'));
+    this.coreUrls.push(coreURL);
+    const wasmURL=await fetchBlobURL(CORE_WASM,'application/wasm',r=>setProgress(5+r*23,'Загрузка FFmpeg…'));
+    this.coreUrls.push(wasmURL);
+    const workerSource=`
+      let ffmpeg=null;
+      function send(id,ok,data,error,transfer){self.postMessage({id,ok,data,error},transfer||[])}
+      self.onmessage=async(e)=>{
+        const {id,type,data}=e.data;
+        try{
+          if(type==='load'){
+            importScripts(data.coreURL);
+            const factory=self.createFFmpegCore;
+            if(typeof factory!=='function')throw new Error('createFFmpegCore не найден');
+            ffmpeg=await factory({mainScriptUrlOrBlob:data.coreURL+'#'+btoa(JSON.stringify({wasmURL:data.wasmURL,workerURL:''}))});
+            ffmpeg.setLogger(d=>self.postMessage({event:'log',data:d}));
+            ffmpeg.setProgress(d=>self.postMessage({event:'progress',data:d}));
+            send(id,true,true);
+          }else if(!ffmpeg){throw new Error('FFmpeg ещё не загружен')}
+          else if(type==='write'){
+            ffmpeg.FS.writeFile(data.path,new Uint8Array(data.buffer));send(id,true,true);
+          }else if(type==='exec'){
+            ffmpeg.setTimeout(data.timeout||-1);ffmpeg.exec(...data.args);const ret=ffmpeg.ret;ffmpeg.reset();send(id,true,ret);
+          }else if(type==='read'){
+            const out=ffmpeg.FS.readFile(data.path);const copy=new Uint8Array(out);send(id,true,copy.buffer,null,[copy.buffer]);
+          }else if(type==='delete'){
+            try{ffmpeg.FS.unlink(data.path)}catch{}send(id,true,true);
+          }else throw new Error('Неизвестная команда '+type);
+        }catch(err){send(id,false,null,err&&err.message?err.message:String(err))}
+      };
+    `;
+    const workerURL=URL.createObjectURL(new Blob([workerSource],{type:'text/javascript'}));
+    this.coreUrls.push(workerURL);
+    this.worker=new Worker(workerURL);
+    this.worker.onmessage=e=>{
+      const m=e.data;
+      if(m.event==='log'){this.onLog(m.data);return}
+      if(m.event==='progress'){this.onProgress(m.data);return}
+      const p=this.pending.get(m.id);if(!p)return;this.pending.delete(m.id);m.ok?p.resolve(m.data):p.reject(new Error(m.error||'Ошибка FFmpeg'));
+    };
+    this.worker.onerror=e=>{for(const p of this.pending.values())p.reject(new Error(e.message||'Ошибка Worker'));this.pending.clear()};
+    await timeout(this.call('load',{coreURL,wasmURL}),180000,'FFmpeg не загрузился за 3 минуты.');
+    setProgress(30,'FFmpeg загружен');
+  }
+  call(type,data,transfer=[]){return new Promise((resolve,reject)=>{const id=++this.seq;this.pending.set(id,{resolve,reject});this.worker.postMessage({id,type,data},transfer)})}
+  async writeFile(path,file){const buffer=await file.arrayBuffer();return this.call('write',{path,buffer},[buffer])}
+  exec(args,ms=180000){return timeout(this.call('exec',{args,timeout:ms-1000}),ms,'Конвертация заняла слишком долго.')}
+  async readFile(path){const buffer=await this.call('read',{path});return new Uint8Array(buffer)}
+  deleteFile(path){return this.call('delete',{path})}
+}
+
+async function getEngine(){
+  if(engine)return engine;
+  engine=new FFmpegCoreWorker();
+  engine.onLog=({message})=>{if(message&&/error|invalid|unknown|failed/i.test(message))log.textContent=message};
+  engine.onProgress=()=>{};
+  await engine.load();
+  return engine;
+}
+function vf(kind,fps){
+  if(kind==='sticker')return `fps=${fps},scale=512:512:force_original_aspect_ratio=decrease:flags=lanczos,format=yuva420p`;
+  return `fps=${fps},scale=100:100:force_original_aspect_ratio=decrease:flags=lanczos,pad=100:100:(ow-iw)/2:(oh-ih)/2:color=black@0,format=yuva420p`;
+}
+async function encode(ff,src,kind,onTry){
+  const out=kind+'.webm';
+  const attempts=[
+    {crf:34,fps:30},{crf:40,fps:30},{crf:46,fps:30},{crf:52,fps:30},{crf:58,fps:30},{crf:64,fps:30},{crf:68,fps:24},{crf:72,fps:20},{crf:76,fps:15}
+  ];
+  let data=null;
+  for(let i=0;i<attempts.length;i++){
+    onTry(i,attempts.length);await ff.deleteFile(out);
+    const a=attempts[i];
+    const ret=await ff.exec(['-y','-i',src,'-t','3','-an','-vf',vf(kind,a.fps),'-c:v','libvpx-vp9','-pix_fmt','yuva420p','-auto-alt-ref','0','-deadline','good','-cpu-used','5','-crf',String(a.crf),'-b:v','0','-metadata:s:v:0','alpha_mode=1','-f','webm',out],180000);
+    if(ret!==0)throw new Error('FFmpeg не смог создать WebM. Код '+ret);
+    data=await ff.readFile(out);
+    if(data.byteLength<=MAX)break;
+  }
+  if(!data)throw new Error('WebM не создался.');
+  await ff.deleteFile(out);
+  if(data.byteLength>MAX)throw new Error(`${kind==='sticker'?'Стикер':'Эмодзи'} не удалось сжать до 256 КБ.`);
+  return data;
+}
 function addResult(name,data,label){const blob=new Blob([data],{type:'video/webm'}),url=URL.createObjectURL(blob);objectUrls.push(url);const row=document.createElement('div');row.className='result';row.innerHTML=`<div class="resultName"><b></b><small>${label} · ${size(data.byteLength)}</small></div><a class="download">Скачать</a>`;row.querySelector('b').textContent=name;const a=row.querySelector('a');a.href=url;a.download=name;results.append(row);results.style.display='block'}
-async function convertAll(){if(busy||!files.length)return;busy=true;revokeResults();progress.style.display='block';log.textContent='';log.classList.remove('statusBad');setProgress(1,'Загрузка конвертера…');try{await load();const {fetchFile}=window.FFmpeg;for(let i=0;i<files.length;i++){const f=files[i],src='input_'+i+'.gif',base=clean(f.name),portion=90/files.length,start=8+i*portion;setProgress(start,`${i+1}/${files.length} · ${f.name}`);ffmpeg.FS('writeFile',src,await fetchFile(f));const s=await encode(src,'sticker',(t,n)=>setProgress(start+portion*(.08+.38*t/n),`${i+1}/${files.length} · стикер`));addResult(base+'_sticker.webm',s,'стикер 512 px');const e=await encode(src,'emoji',(t,n)=>setProgress(start+portion*(.52+.38*t/n),`${i+1}/${files.length} · эмодзи`));addResult(base+'_emoji.webm',e,'эмодзи 100×100');rm(src)}setProgress(100,'Готово — скачай файлы ниже');log.textContent='';}catch(e){console.error(e);status.textContent='Ошибка';percent.textContent='';log.textContent=(e?.message||String(e)).replace(/^ReferenceError:\s*/,'');log.classList.add('statusBad')}finally{busy=false}}
+async function convertAll(){
+  if(busy||!files.length)return;busy=true;revokeResults();progressBox.style.display='block';log.textContent='';log.className='log';setProgress(1,'Загрузка FFmpeg…');
+  try{
+    const ff=await getEngine();
+    for(let i=0;i<files.length;i++){
+      const f=files[i],src=`input_${Date.now()}_${i}.gif`,base=clean(f.name),portion=70/files.length,start=30+i*portion;
+      setProgress(start,`${i+1}/${files.length} · ${f.name}`);await ff.writeFile(src,f);
+      const s=await encode(ff,src,'sticker',(t,n)=>setProgress(start+portion*(.05+.4*t/n),`${i+1}/${files.length} · стикер`));addResult(base+'_sticker.webm',s,'стикер 512 px');
+      const e=await encode(ff,src,'emoji',(t,n)=>setProgress(start+portion*(.52+.4*t/n),`${i+1}/${files.length} · эмодзи`));addResult(base+'_emoji.webm',e,'эмодзи 100×100');
+      await ff.deleteFile(src);
+    }
+    setProgress(100,'Готово');log.textContent='Файлы готовы к скачиванию.';log.className='log statusOk';
+  }catch(e){console.error(e);setError((e&&e.message?e.message:String(e)).replace(/^RuntimeError:\s*/,'').replace(/^Error:\s*/,''))}
+  finally{busy=false}
+}
 </script>
 </body>
 </html>

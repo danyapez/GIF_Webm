@@ -58,7 +58,7 @@ async function load(){
   const {createFFmpeg}=window.FFmpeg;
   ffmpeg=createFFmpeg({
     log:true,
-    corePath:'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
+    corePath:'https://unpkg.com/@ffmpeg/core-st@0.11.1/dist/ffmpeg-core.js',
     progress:({ratio})=>{if(Number.isFinite(ratio))setProgress(4+ratio*4,'Загрузка конвертера…')}
   });
   const oldLog=console.log;

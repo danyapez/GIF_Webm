@@ -2,18 +2,18 @@
 <html lang="ru"><head>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#000000">
-<title>GIF TO WEBM v25</title><style>
+<title>MEDIA TO WEBM v26</title><style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Press+Start+2P&display=swap');
 :root{--bg:#000;--ink:#fff;--muted:#9a9a9a;--bad:#ff6b5f;--ok:#7dff80;--pixel:"Press Start 2P",monospace;--sans:"Inter",Arial,sans-serif;--pad:clamp(16px,3vw,48px)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;background:#000;color:#fff;font-family:var(--sans)}button,input,a{font:inherit}#input{display:none!important}
-main{width:100%;padding:var(--pad);display:flex;flex-direction:column;gap:24px}.drop{width:100%;min-height:62vh;border:2px dashed #fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px;cursor:pointer;background:#000;transition:.15s}.drop:hover,.drop.drag{background:#fff;color:#000}.drop strong{font-family:var(--pixel);font-size:clamp(30px,5vw,68px);font-weight:400;line-height:1.2;letter-spacing:-.04em;display:flex;align-items:center;justify-content:center;gap:.34em;white-space:nowrap}
+main{width:100%;padding:var(--pad);display:flex;flex-direction:column;gap:24px}.drop{width:100%;min-height:62vh;border:2px dashed #fff;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px;cursor:pointer;background:#000;transition:.15s}.drop:hover,.drop.drag{background:#fff;color:#000}.drop strong{font-family:var(--pixel);font-size:clamp(24px,4.2vw,58px);font-weight:400;line-height:1.35;letter-spacing:-.04em;display:flex;align-items:center;justify-content:center;gap:.28em;white-space:normal;flex-wrap:wrap}
 .list{display:none;border:1px solid #fff;background:#000}.item{display:grid;grid-template-columns:86px minmax(0,1fr) 46px;gap:18px;align-items:center;padding:16px;border-top:1px solid #fff}.item:first-child{border-top:0}.preview{width:86px;height:86px;object-fit:contain;border:1px solid #fff;background-color:#111;background-image:linear-gradient(45deg,#242424 25%,transparent 25%),linear-gradient(-45deg,#242424 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#242424 75%),linear-gradient(-45deg,transparent 75%,#242424 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}.meta b,.meta small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta b{font-size:18px}.meta small{font-size:13px;color:var(--muted);margin-top:7px}.remove{border:1px solid #fff;background:#000;color:#fff;width:46px;height:46px;cursor:pointer;font-size:28px;align-self:start;transform:translateY(-8px);display:grid;place-items:center;line-height:1;padding:0}.remove:hover{background:#fff;color:#000}
 .facts{display:grid;grid-template-columns:1fr 1fr;border:1px solid #fff}.facts div{min-height:124px;padding:22px;border-right:1px solid #fff;border-bottom:1px solid #fff;font-size:14px;color:#d8d8d8}.facts div:nth-child(2n){border-right:0}.facts div:nth-last-child(-n+2){border-bottom:0}.facts b{display:block;font-family:var(--pixel);font-size:clamp(17px,2vw,24px);font-weight:400;color:#fff;margin-bottom:14px;letter-spacing:-.03em}
 .progress{display:none;border:1px solid #fff;padding:22px}.progressTop{display:flex;justify-content:space-between;gap:20px;font-family:var(--pixel);font-size:10px;line-height:1.5;margin-bottom:16px}.track{height:12px;background:#222}.bar{height:100%;width:0;background:#fff;transition:width .12s}.log{font-size:12px;color:var(--muted);margin-top:14px;min-height:18px;word-break:break-word;white-space:pre-wrap}
 .results{display:none;border:1px solid #fff}.result{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;padding:18px;border-top:1px solid #fff}.result:first-child{border-top:0}.resultName{min-width:0}.resultName b,.resultName small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.resultName b{font-size:15px}.resultName small{margin-top:6px;color:var(--muted);font-size:12px}.download{display:inline-flex;align-items:center;justify-content:center;border:1px solid #fff;color:#fff;background:#000;padding:14px 16px;text-decoration:none;font-family:var(--pixel);font-size:9px;white-space:nowrap;cursor:pointer}.download:hover{background:#fff;color:#000}.zipResult{background:#fff;color:#000}.zipResult .resultName small{color:#555}.zipResult .download{background:#000;color:#fff;border-color:#000}.zipResult .download:hover{background:#fff;color:#000}.statusBad{color:var(--bad)!important}.statusOk{color:var(--ok)!important}
-@media(max-width:700px){main{padding:16px;gap:18px}.drop{min-height:62vh;padding:20px}.drop strong{font-size:clamp(27px,8vw,44px);gap:.3em}.facts div{min-height:116px;padding:18px 16px}.item{grid-template-columns:64px minmax(0,1fr) 42px;gap:12px}.preview{width:64px;height:64px}.remove{width:42px;height:42px;transform:translateY(-10px)}.result{grid-template-columns:1fr}.download{width:100%;min-height:52px}}
+@media(max-width:700px){main{padding:16px;gap:18px}.drop{min-height:62vh;padding:20px}.drop strong{font-size:clamp(20px,6.2vw,32px);gap:.24em}.facts div{min-height:116px;padding:18px 16px}.item{grid-template-columns:64px minmax(0,1fr) 42px;gap:12px}.preview{width:64px;height:64px}.remove{width:42px;height:42px;transform:translateY(-10px)}.result{grid-template-columns:1fr}.download{width:100%;min-height:52px}}
 </style></head><body><main>
-<label class="drop" id="drop"><input id="input" type="file" accept="image/gif,.gif" multiple><strong><span>GIF</span><span>TO</span><span>WEBM</span></strong></label>
+<label class="drop" id="drop"><input id="input" type="file" accept="image/gif,video/mp4,video/webm,video/quicktime,.gif,.mp4,.m4v,.mov,.webm" multiple><strong><span>GIF</span><span>/</span><span>MOV</span><span>/</span><span>MP4</span><span>/</span><span>WEBM</span></strong></label>
 <div class="list" id="list"></div>
 <div class="facts"><div><b>512 px</b>стикер</div><div><b>100×100</b>эмодзи</div><div><b>VP9</b>WebM</div><div><b>≤256 КБ</b>автосжатие</div></div>
 <div class="progress" id="progress"><div class="progressTop"><span id="status">Подготовка</span><span id="percent">0%</span></div><div class="track"><div class="bar" id="bar"></div></div><div class="log" id="log"></div></div>
@@ -36,8 +36,21 @@ function setProgress(n,t,detail=''){n=Math.max(0,Math.min(100,Math.round(n)));ba
 function setError(text){status.textContent='Ошибка';percent.textContent='';log.textContent=text;log.className='log statusBad'}
 function revokeResults(){objectUrls.forEach(URL.revokeObjectURL);objectUrls=[];outputFiles=[];results.innerHTML='';results.style.display='none'}
 function clearPreviews(){previewUrls.forEach(URL.revokeObjectURL);previewUrls=[]}
-function render(){clearPreviews();list.innerHTML='';list.style.display=files.length?'block':'none';drop.style.minHeight=files.length?'240px':'';files.forEach((f,i)=>{const row=document.createElement('div');row.className='item';const url=URL.createObjectURL(f);previewUrls.push(url);row.innerHTML=`<img class="preview" alt="Предпросмотр GIF"><div class="meta"><b></b><small>${size(f.size)}</small></div><button class="remove" aria-label="Удалить">×</button>`;row.querySelector('.preview').src=url;row.querySelector('b').textContent=f.name;row.querySelector('.remove').onclick=e=>{e.preventDefault();if(busy)return;files.splice(i,1);render();revokeResults()};list.append(row)})}
-async function add(incoming){if(busy)return;for(const f of incoming)if(f.type==='image/gif'||f.name.toLowerCase().endsWith('.gif'))files.push(f);render();revokeResults();if(files.length)await convertAll()}
+const extOf=f=>(f.name.split('.').pop()||'').toLowerCase();
+const isGif=f=>f.type==='image/gif'||extOf(f)==='gif';
+const isAccepted=f=>isGif(f)||['mov','mp4','m4v','webm'].includes(extOf(f))||['video/mp4','video/webm','video/quicktime'].includes(f.type);
+function render(){
+  clearPreviews();list.innerHTML='';list.style.display=files.length?'block':'none';drop.style.minHeight=files.length?'240px':'';
+  files.forEach((f,i)=>{
+    const row=document.createElement('div');row.className='item';const url=URL.createObjectURL(f);previewUrls.push(url);
+    const preview=isGif(f)?document.createElement('img'):document.createElement('video');preview.className='preview';preview.alt='Предпросмотр';preview.src=url;
+    if(!isGif(f)){preview.muted=true;preview.loop=true;preview.autoplay=true;preview.playsInline=true;preview.preload='metadata';preview.setAttribute('playsinline','');preview.setAttribute('muted','');preview.play().catch(()=>{});}
+    const meta=document.createElement('div');meta.className='meta';const b=document.createElement('b');b.textContent=f.name;const sm=document.createElement('small');sm.textContent=`${extOf(f).toUpperCase()} · ${size(f.size)}`;meta.append(b,sm);
+    const remove=document.createElement('button');remove.className='remove';remove.type='button';remove.setAttribute('aria-label','Удалить');remove.textContent='×';remove.onclick=e=>{e.preventDefault();if(busy)return;files.splice(i,1);render();revokeResults()};
+    row.append(preview,meta,remove);list.append(row);
+  });
+}
+async function add(incoming){if(busy)return;let added=0;for(const f of incoming)if(isAccepted(f)){files.push(f);added++}render();revokeResults();if(!added&&incoming.length)setError('Поддерживаются GIF, MOV, MP4, M4V и WebM.');if(files.length)await convertAll()}
 input.onchange=async()=>{await add(input.files);input.value=''};
 ['dragenter','dragover'].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.add('drag')}));
 ['dragleave','drop'].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.remove('drag')}));
@@ -49,8 +62,15 @@ function readGifInfo(buffer){
   const delays=[];
   for(const frame of parsed.frames){if(frame.image)delays.push(normalizeDelay(frame.gce&&frame.gce.delay!=null?frame.gce.delay*10:100))}
   const durationMs=Math.min(MAX_DURATION_MS,Math.max(1,delays.reduce((a,b)=>a+b,0)||100));
-  const sorted=delays.slice().sort((a,b)=>a-b),median=sorted.length?sorted[Math.floor(sorted.length/2)]:50,preferredFps=Math.max(10,Math.min(30,Math.round(1000/median)));return {width:parsed.lsd.width,height:parsed.lsd.height,delays,durationMs,frameCount:delays.length||1,preferredFps};
+  const sorted=delays.slice().sort((a,b)=>a-b),median=sorted.length?sorted[Math.floor(sorted.length/2)]:50,preferredFps=Math.max(10,Math.min(30,Math.round(1000/median)));return {sourceType:'gif',width:parsed.lsd.width,height:parsed.lsd.height,delays,durationMs,frameCount:delays.length||1,preferredFps};
 }
+function waitMedia(el,event,timeout=20000){return new Promise((resolve,reject)=>{let timer;const done=()=>{cleanup();resolve()};const fail=()=>{cleanup();const code=el.error&&el.error.code;reject(new Error(code?`Браузер не смог открыть видео (код ${code}).`:'Браузер не смог открыть видео.'))};const cleanup=()=>{clearTimeout(timer);el.removeEventListener(event,done);el.removeEventListener('error',fail)};el.addEventListener(event,done,{once:true});el.addEventListener('error',fail,{once:true});timer=setTimeout(()=>{cleanup();reject(new Error('Видео загружается слишком долго.'))},timeout)})}
+async function openVideo(file){
+  const url=URL.createObjectURL(file),video=document.createElement('video');video.preload='auto';video.muted=true;video.playsInline=true;video.setAttribute('playsinline','');video.src=url;
+  try{if(video.readyState<1)await waitMedia(video,'loadedmetadata');if(video.readyState<2)await waitMedia(video,'loadeddata');if(!video.videoWidth||!video.videoHeight)throw new Error('Не удалось определить размер видео.');return {video,url}}catch(e){URL.revokeObjectURL(url);throw e}
+}
+async function readVideoInfo(file){const opened=await openVideo(file);try{const d=Number(opened.video.duration);if(!Number.isFinite(d)||d<=0)throw new Error('Не удалось определить длительность видео.');return {sourceType:'video',width:opened.video.videoWidth,height:opened.video.videoHeight,durationMs:Math.min(MAX_DURATION_MS,Math.max(1,Math.round(d*1000))),preferredFps:30}}finally{opened.video.removeAttribute('src');opened.video.load();URL.revokeObjectURL(opened.url)}}
+async function prepareSource(file){if(isGif(file)){const buffer=await file.arrayBuffer();return {file,buffer,info:readGifInfo(buffer)}}return {file,buffer:null,info:await readVideoInfo(file)}}
 function even(v,max=512){v=Math.max(2,Math.min(max,Math.round(v)));if(v%2)v+=v===max?-1:1;return v}
 function targetGeometry(kind,w,h){
   if(kind==='emoji')return {width:100,height:100,dx:0,dy:0,dw:100,dh:100,padded:true};
@@ -166,12 +186,32 @@ async function streamWithGifuct(buffer,info,kind,fps,session,onProgress){
   }
   return sent;
 }
-async function encodeAttempt(buffer,info,kind,fps,bitrate,onProgress){
+async function seekVideo(video,time){
+  const end=Math.max(0,(Number(video.duration)||0)-.001),target=Math.max(0,Math.min(end,time));
+  if(Math.abs(video.currentTime-target)<.0005&&video.readyState>=2)return;
+  await new Promise((resolve,reject)=>{let timer;const done=()=>{cleanup();resolve()};const fail=()=>{cleanup();reject(new Error('Не удалось прочитать кадр видео.'))};const cleanup=()=>{clearTimeout(timer);video.removeEventListener('seeked',done);video.removeEventListener('error',fail)};video.addEventListener('seeked',done,{once:true});video.addEventListener('error',fail,{once:true});timer=setTimeout(()=>{cleanup();reject(new Error('Не удалось перейти к кадру видео.'))},10000);try{video.currentTime=target}catch(e){cleanup();reject(e)}})
+}
+async function streamWithVideo(file,info,kind,fps,session,onProgress){
+  const opened=await openVideo(file),video=opened.video,g=drawGeometry(kind,info.width,info.height),out=makeCanvas(g.width,g.height),ctx=out.getContext('2d',{alpha:true,willReadFrequently:true});ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+  const duration=Math.min(3,info.durationMs/1000),count=Math.max(1,Math.ceil(duration*fps));let sent=0;
+  try{
+    video.pause();
+    for(let i=0;i<count;i++){
+      const t=Math.min(Math.max(0,duration-.001),i/fps);if(i>0||video.readyState<2)await seekVideo(video,t);
+      ctx.clearRect(0,0,g.width,g.height);ctx.drawImage(video,g.dx,g.dy,g.dw,g.dh);await sendCanvasFrame(session,ctx,g.width,g.height);sent++;onProgress((i+1)/count,sent);
+    }
+    return sent;
+  }catch(e){if(/Браузер не смог|кадр видео|перейти к кадру/.test(e.message||''))throw e;throw new Error('Не удалось декодировать видео в этом браузере. Для MOV с ProRes 4444 используй Safari на Mac.');}
+  finally{video.pause();video.removeAttribute('src');video.load();URL.revokeObjectURL(opened.url)}
+}
+async function encodeAttempt(source,info,kind,fps,bitrate,onProgress){
   const g=drawGeometry(kind,info.width,info.height),assets=await getAssets(),session=new EncoderSession(assets);
   try{
     await session.init({width:g.width,height:g.height,fps,bitrate});
-    const sent=(typeof ImageDecoder==='function')?await streamWithImageDecoder(buffer,info,kind,fps,session,onProgress):await streamWithGifuct(buffer,info,kind,fps,session,onProgress);
-    if(!sent)throw new Error('В GIF не найдено кадров.');
+    let sent=0;
+    if(info.sourceType==='gif')sent=(typeof ImageDecoder==='function')?await streamWithImageDecoder(source.buffer,info,kind,fps,session,onProgress):await streamWithGifuct(source.buffer,info,kind,fps,session,onProgress);
+    else sent=await streamWithVideo(source.file,info,kind,fps,session,onProgress);
+    if(!sent)throw new Error('В файле не найдено кадров.');
     const out=await session.finish();return new Uint8Array(out.buffer);
   }finally{session.close()}
 }
@@ -182,12 +222,12 @@ function bitratePlan(kind,durationMs,preferredFps){
   const fps=Math.max(10,Math.min(30,preferredFps||24));
   return [{fps,k:base},{fps:Math.min(fps,20),k:Math.max(min,Math.floor(base*.64))},{fps:15,k:Math.max(35,Math.floor(base*.42))}];
 }
-async function encode(buffer,info,kind,onStage){
+async function encode(source,info,kind,onStage){
   const plans=bitratePlan(kind,info.durationMs,info.preferredFps);let last=null;
   for(let i=0;i<plans.length;i++){
     const p=plans[i];onStage(i,plans.length,p,0);
     try{
-      const data=await encodeAttempt(buffer,info,kind,p.fps,p.k,(r,n)=>onStage(i,plans.length,p,r,n));
+      const data=await encodeAttempt(source,info,kind,p.fps,p.k,(r,n)=>onStage(i,plans.length,p,r,n));
       if(data.byteLength<=MAX_BYTES)return data;
       last=new Error(`Получилось ${size(data.byteLength)}. Повторяю с более сильным сжатием.`);
     }catch(e){last=e}
@@ -220,21 +260,26 @@ function addZipResult(sourceCount){
   if(!outputFiles.length)return;
   const blob=makeZip(outputFiles),url=URL.createObjectURL(blob);objectUrls.push(url);
   const row=document.createElement('div');row.className='result zipResult';
-  row.innerHTML=`<div class="resultName"><b>ГОТОВО</b><small>${sourceCount} GIF · ${outputFiles.length} WebM · папки sticker и emoji · ${size(blob.size)}</small></div><a class="download">Скачать один ZIP</a>`;
-  const a=row.querySelector('a');a.href=url;a.download='gif_to_webm.zip';results.replaceChildren(row);results.style.display='block';
+  row.innerHTML=`<div class="resultName"><b>ГОТОВО</b><small>${sourceCount} файлов · ${outputFiles.length} WebM · папки sticker и emoji · ${size(blob.size)}</small></div><a class="download">Скачать один ZIP</a>`;
+  const a=row.querySelector('a');a.href=url;a.download='media_to_webm.zip';results.replaceChildren(row);results.style.display='block';
 }
 async function convertAll(){
   if(busy||!files.length)return;busy=true;revokeResults();progressBox.style.display='block';log.textContent='';log.className='log';setProgress(1,'Подготовка…','Первый запуск загружает кодировщик VP9.');
   try{
     await getAssets();
+    const failed=[];let completed=0;
     for(let i=0;i<files.length;i++){
-      const f=files[i],base=clean(f.name),buffer=await f.arrayBuffer(),info=readGifInfo(buffer),portion=88/files.length,start=12+i*portion;
-      const s=await encode(buffer,info,'sticker',(attempt,total,p,r=0)=>setProgress(start+portion*(.02+.45*((attempt+r)/total)),`${i+1}/${files.length} · стикер`,`${p.fps} FPS · попытка ${attempt+1}/${total}`));
-      addResult(base+'_sticker.webm',s,'стикер 512 px','sticker');
-      const e=await encode(buffer,info,'emoji',(attempt,total,p,r=0)=>setProgress(start+portion*(.52+.45*((attempt+r)/total)),`${i+1}/${files.length} · эмодзи`,`${p.fps} FPS · попытка ${attempt+1}/${total}`));
-      addResult(base+'_emoji.webm',e,'эмодзи 100×100','emoji');
+      const f=files[i],base=clean(f.name),portion=88/files.length,start=12+i*portion;
+      try{
+        const source=await prepareSource(f),info=source.info;
+        const s=await encode(source,info,'sticker',(attempt,total,p,r=0)=>setProgress(start+portion*(.02+.45*((attempt+r)/total)),`${i+1}/${files.length} · стикер`,`${extOf(f).toUpperCase()} · ${p.fps} FPS · попытка ${attempt+1}/${total}`));
+        addResult(base+'_sticker.webm',s,'стикер 512 px','sticker');
+        const e=await encode(source,info,'emoji',(attempt,total,p,r=0)=>setProgress(start+portion*(.52+.45*((attempt+r)/total)),`${i+1}/${files.length} · эмодзи`,`${extOf(f).toUpperCase()} · ${p.fps} FPS · попытка ${attempt+1}/${total}`));
+        addResult(base+'_emoji.webm',e,'эмодзи 100×100','emoji');completed++;
+      }catch(fileError){failed.push(`${f.name}: ${fileError&&fileError.message?fileError.message:String(fileError)}`)}
     }
-    addZipResult(files.length);setProgress(100,'Готово','Все результаты собраны в один ZIP.');log.className='log statusOk';
-  }catch(e){console.error(e);let m=(e&&e.message?e.message:String(e)).replace(/^RuntimeError:\s*/,'').replace(/^Error:\s*/,'');if(/failed to fetch|networkerror|importscripts/i.test(m))m='Не удалось загрузить кодировщик VP9. Проверь интернет и обнови страницу.';setError(m)}finally{busy=false}
+    if(!completed)throw new Error(failed.join('\n')||'Не удалось обработать файлы.');
+    addZipResult(completed);setProgress(100,failed.length?'Готово с пропусками':'Готово',failed.length?`ZIP готов. Не обработано: ${failed.length}\n${failed.join('\n')}`:'Все результаты собраны в один ZIP.');log.className=failed.length?'log statusBad':'log statusOk';
+  }catch(e){console.error(e);let m=(e&&e.message?e.message:String(e)).replace(/^RuntimeError:\s*/,'').replace(/^Error:\s*/,'');if(/failed to fetch|networkerror|importscripts/i.test(m))m='Не удалось загрузить кодировщик VP9. Проверь интернет и обнови страницу.';if(/media_err|supported source|demuxer|format not supported/i.test(m))m='Этот видеоформат или кодек не поддерживается браузером. MOV с ProRes 4444 лучше открывать в Safari на Mac.';setError(m)}finally{busy=false}
 }
 </script></body></html>

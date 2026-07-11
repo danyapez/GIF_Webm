@@ -61,7 +61,8 @@ async function load(){
   const base='https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/umd';
   const coreURL=await toBlobURL(`${base}/ffmpeg-core.js`,'text/javascript');
   const wasmURL=await toBlobURL(`${base}/ffmpeg-core.wasm`,'application/wasm');
-  await timeout(ffmpeg.load({coreURL,wasmURL}),180000,'Конвертер не загрузился за 3 минуты. Проверь интернет и блокировщики.');
+  const classWorkerURL=await toBlobURL('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.15/dist/esm/worker.js','text/javascript');
+  await timeout(ffmpeg.load({coreURL,wasmURL,classWorkerURL}),180000,'Конвертер не загрузился за 3 минуты. Проверь интернет и блокировщики.');
   loaded=true;setProgress(6,'Конвертер загружен');
 }
 async function rm(n){try{await ffmpeg.deleteFile(n)}catch{}}
